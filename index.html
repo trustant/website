@@ -1,138 +1,710 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-light">
 
 <head>
   <meta charset="utf-8" />
-  <title>Trustant — Coming Soon</title>
-  <meta content="Trustant is coming soon." name="description" />
+  <title>Trustant — A Trustable Code Assistant for Private AI</title>
+  <meta
+    content="Build full-stack applications with Private AI on your PC, workstation, private server, or sovereign infrastructure. Powered by Apache OpenServerless."
+    name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Trustant" />
-  <meta property="og:title" content="Trustant — Coming Soon" />
-  <meta property="og:description" content="Trustant is coming soon." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Trustant — A Trustable Code Assistant for Private AI" />
+  <meta property="og:description"
+    content="Build full-stack applications with Private AI on your PC, workstation, private server, or sovereign infrastructure. Powered by Apache OpenServerless." />
   <meta property="og:image" content="images/logo-trustant.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trustant — A Trustable Code Assistant for Private AI" />
+  <meta name="twitter:description"
+    content="Build full-stack applications with Private AI on your PC, workstation, private server, or sovereign infrastructure. Powered by Apache OpenServerless." />
+  <meta name="twitter:image" content="images/logo-trustant.png" />
 
   <!-- Favicon and icons -->
   <link rel="icon" href="images/favicon/favicon.ico" sizes="32x32" />
   <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
 
-  <!-- Preload fonts -->
+  <!-- Preload fonts (hosted locally; no remote font services) -->
   <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
-  <style>
-    @font-face {
-      font-family: "InterVariable";
-      src: url("fonts/InterVariable.woff2") format("woff2");
-      font-weight: 100 900;
-      font-display: swap;
-    }
+  <!-- Styles -->
+  <link href="vendor/font-awesome-6.7.2/css/all.min.css" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet" type="text/css" />
+  <link href="css/pricing.css" rel="stylesheet" type="text/css" />
+  <link href="css/tablet.css" rel="stylesheet" type="text/css" />
+  <link href="css/mobile.css" rel="stylesheet" type="text/css" />
+  <link href="css/trustant.css?v=2" rel="stylesheet" type="text/css" />
+  <script src="js/main.js?v=2" type="text/javascript" defer></script>
 
-    :root {
-      --bg: #0b0a09;
-      --fg: #f5f1ec;
-      --muted: #a09a93;
-      --accent: #d9702f;
-    }
+  <!--
+    Hold the first paint until the page is assembled, so nothing is shown
+    half-built: no fallback-font flash, and no glimpse of the motto as a bare
+    list before the typewriter takes it over.
 
-    * {
-      box-sizing: border-box;
-    }
+    This is inline and in the head on purpose. It has to run before the body is
+    parsed, which the deferred main.js cannot do. The class is also *added from
+    script* rather than written into the markup or the stylesheet: if it lived
+    there, a blocked or failed script would leave the page permanently
+    invisible. Applied here, the worst case is that the gate never goes up and
+    the page renders exactly as it would have anyway.
+  -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("loading");
 
-    html,
-    body {
-      height: 100%;
-    }
+      // Never leave the page hidden because something stalled.
+      var timer = setTimeout(reveal, 1500);
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "InterVariable", system-ui, -apple-system, "Segoe UI", sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 16px;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(60% 50% at 50% 42%, rgba(217, 112, 47, 0.22), transparent 70%);
-      pointer-events: none;
-    }
-
-    main {
-      position: relative;
-      width: 100%;
-      max-width: 720px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .logo {
-      width: min(420px, 82vw);
-      height: auto;
-      /* the logo asset is black on white — invert it for the dark page */
-      filter: invert(1);
-    }
-
-    .mascot {
-      width: min(300px, 62vw);
-      height: auto;
-      animation: float 5s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
+      function reveal() {
+        clearTimeout(timer);
+        root.classList.remove("loading");
       }
 
-      50% {
-        transform: translateY(-12px);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .mascot {
-        animation: none;
-      }
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    p {
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 3.5vw, 1.15rem);
-      line-height: 1.6;
-    }
-  </style>
+      // Fonts are the main cause of the visible reflow: document.fonts.ready
+      // resolves once they have settled. Reveal on failure too, and wait for
+      // the DOM either way so the motto is never seen as a bare list.
+      document.addEventListener("DOMContentLoaded", function () {
+        var fonts = document.fonts ? document.fonts.ready : null;
+        if (fonts && fonts.then) fonts.then(reveal, reveal);
+        else reveal();
+      });
+    })();
+  </script>
 </head>
 
 <body>
-  <main>
-    <img class="logo" src="images/logo-trustant.png" alt="Trustant" />
-    <img class="mascot" src="images/trusty-ant.png" alt="Trusty, the Trustant ant mascot, giving a thumbs up" />
-    <h1>Coming soon!</h1>
-    <p>We're busy building. Check back shortly.</p>
-  </main>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="background-gradient"></div>
+  <div class="page-container">
+
+    <!-- 1. Header -->
+    <header class="nav-container">
+      <a href="#top" class="nav-brand"><img src="images/logo-trustant.png" width="106" height="28"
+          alt="Trustant" /></a>
+      <nav id="site-nav" class="nav-menu" data-navigation aria-label="Sections">
+        <a href="#private-ai" class="nav-link">Private AI</a>
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="#platform" class="nav-link">Platform</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="https://github.com/trustant/trustant" class="nav-link nav-link-icon" target="_blank"
+          rel="noopener">
+          <span class="fa-brands fa-github icon s" aria-hidden="true"></span> GitHub
+        </a>
+        <div class="button-group stacked margin-top-l mobile-only">
+          <button type="button" class="button primary" data-video-open>
+            <span class="fa-solid fa-play icon s" aria-hidden="true"></span> Watch a video
+          </button>
+        </div>
+      </nav>
+      <div class="button-group">
+        <button type="button" class="button primary compact hide-on-mobile nav-watch" data-video-open>
+          <span class="fa-solid fa-play icon s" aria-hidden="true"></span> Watch a video
+        </button>
+        <button class="button ghost compact nav-hamburger" data-mobile-toggle aria-label="Show menu"
+          aria-expanded="false" aria-controls="site-nav">
+          <span class="fa-solid fa-bars icon m" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- 2. Hero and introduction video -->
+      <section id="top">
+        <div class="heading hero centered">
+          <img class="hero-logo" src="images/logo-trustant.png" width="360" height="94" alt="Trustant" />
+          <h1 class="balanced">A Trustable Code Assistant for Private AI</h1>
+          <!-- The messages ship as a plain list so they are all readable without
+               JavaScript, or under reduced motion. The script replaces the list
+               with a single line that composes each message in turn. -->
+          <div class="motto" id="motto">
+            <ul class="motto-list" id="motto-list">
+              <li>Build full-stack applications on your PC with AI you control</li>
+              <li>Run your AI locally, on a workstation, a private server or your own data center</li>
+              <li>Then publish your application wherever you need it</li>
+            </ul>
+          </div>
+          <figure class="hero-anim">
+            <video class="hero-anim-video" src="video/truustant-anim.mp4" width="300" height="130" autoplay loop muted
+              playsinline preload="auto"
+              aria-label="Trustant building an application from a written description."></video>
+          </figure>
+
+          <div class="button-group margin-paragraph centered">
+            <a href="#pricing" class="button primary">Explore pricing</a>
+            <button type="button" class="button tertiary" data-video-open>Watch a video</button>
+          </div>
+        </div>
+
+        <div class="tech-foundation">
+          <p class="paragraph m secondary tech-foundation-lead">
+            <a href="https://openserverless.apache.org" target="_blank" rel="noopener">Built with Apache
+              OpenServerless</a> — <a href="https://nuvolaris.io" target="_blank" rel="noopener">Powered by
+              Nuvolaris</a>
+          </p>
+          <!-- The logos repeat the two links above, so they are decorative here:
+               announcing them again would read the same names twice over. -->
+          <div class="tech-foundation-logos" aria-hidden="true">
+            <a href="https://openserverless.apache.org" target="_blank" rel="noopener" class="tech-foundation-logo"
+              tabindex="-1">
+              <img src="images/apache-openserverless.png" width="2172" height="724" alt="" />
+            </a>
+            <a href="https://nuvolaris.io" target="_blank" rel="noopener" class="tech-foundation-logo"
+              tabindex="-1">
+              <img src="images/logo-nuvolaris.svg" width="2000" height="312" alt="" />
+            </a>
+          </div>
+          <p class="paragraph m secondary tech-foundation-text">
+            Frontend, APIs, database and storage, hosting, compute, functions, security, rate limiting, caching,
+            load balancing, logging and recovery — Kubernetes, S3-compatible storage, PostgreSQL, Redis,
+            Prometheus and Velero, integrated and running on infrastructure you control. A load-balanced
+            controller dispatches work through Kafka to invokers that run your actions in the runtime each one
+            needs.
+          </p>
+          <img class="stack-image" src="images/nuvolaris-stack.png" width="421" height="258" loading="lazy"
+            alt="The platform stack: layered services alongside S3-compatible storage, PostgreSQL, Kubernetes, Redis, Prometheus and Velero, with a load-balanced controller, Kafka and multi-runtime invoker architecture." />
+        </div>
+      </section>
+
+      <!-- 3. Private AI, wherever you run it -->
+      <section id="private-ai">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Private AI, on infrastructure you control</h2>
+          <p class="paragraph m secondary balanced">
+            Choose where your coding assistant's AI runs. Start on your own PC or connect to dedicated
+            infrastructure for your team.
+          </p>
+        </div>
+        <div class="grid columns-4 gap-l">
+          <div class="feature-card">
+            <div class="fa-solid fa-laptop-code icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">On your PC</h3>
+              <p class="paragraph s secondary">
+                Use local AI on your own computer to build applications in a personal development environment.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="fa-solid fa-microchip icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">On an AI workstation</h3>
+              <p class="paragraph s secondary">
+                Connect to a dedicated AI workstation, such as NVIDIA DGX Spark, while building from your PC.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="fa-solid fa-server icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">On a private server</h3>
+              <p class="paragraph s secondary">
+                Use AI hosted on a server your organization controls, with access managed for your team.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="fa-solid fa-building-shield icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">In a sovereign data center</h3>
+              <p class="paragraph s secondary">
+                Connect to AI in a data center you control, with infrastructure and operations governed by your own
+                requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+        <p class="paragraph m secondary text-centered">
+          Keep prompts, code, and data within your chosen private environment by using private models and services
+          throughout your workflow.
+        </p>
+      </section>
+
+      <!-- 4. Build on your PC. Publish anywhere. -->
+      <section id="how-it-works">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Build on your PC. Publish anywhere.</h2>
+          <p class="paragraph m secondary balanced">
+            Move from an idea to a running application with a coding assistant and an integrated application
+            environment.
+          </p>
+        </div>
+        <div class="grid columns-3 gap-l">
+          <div class="feature-card">
+            <div class="step-number" aria-hidden="true">1</div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">Choose your Private AI</h3>
+              <p class="paragraph s secondary">
+                Connect Trustant to AI running on your PC, an AI workstation, a private server, or your sovereign
+                infrastructure.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="step-number" aria-hidden="true">2</div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">Build and run your application</h3>
+              <p class="paragraph s secondary">
+                Describe what you need. Use Trustant to create and refine your frontend, backend, and data
+                connections, then run and test the application on your PC.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="step-number" aria-hidden="true">3</div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">Publish where you need it</h3>
+              <p class="paragraph s secondary">
+                Deploy your application to a compatible environment on your own server, a private cluster, or
+                infrastructure in a data center you control.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flow graphic: where the application is published. -->
+        <div class="diagram margin-top-l">
+          <div class="flow-group">
+          <div class="flow-row">
+            <div class="flow-node accent">
+              <img class="flow-image" src="images/mac+spark.png" width="644" height="279" loading="lazy"
+                alt="A laptop running Trustant beside an AI workstation." />
+              <p class="paragraph m bold no-top-margin">PC with Trustant</p>
+              <p class="paragraph s tertiary">Build and test here</p>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">
+              <span class="fa-solid fa-arrow-right icon m"></span>
+            </div>
+            <div class="flow-node">
+              <img class="flow-image" src="images/local-ai.png" width="782" height="974" loading="lazy"
+                alt="A compact AI appliance for a single desk." />
+              <p class="paragraph m bold no-top-margin">AI appliance</p>
+            </div>
+            <div class="flow-node">
+              <img class="flow-image" src="images/private-ai.png" width="502" height="334" loading="lazy"
+                alt="A rack-mounted GPU server." />
+              <p class="paragraph m bold no-top-margin">Private Server</p>
+            </div>
+            <div class="flow-node">
+              <img class="flow-image" src="images/sovereign-ai.png" width="378" height="450" loading="lazy"
+                alt="A data center building." />
+              <p class="paragraph m bold no-top-margin">Sovereign Data Center</p>
+            </div>
+          </div>
+          <p class="paragraph s tertiary text-centered">Publish: where your application runs</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 5. The platform behind the assistant -->
+      <section id="platform">
+        <div class="heading centered">
+          <h2 class="no-top-margin">A coding assistant with a complete application platform</h2>
+          <p class="paragraph m secondary balanced">
+            Trustant is built on a full-stack, private, cloud-native environment based on Apache OpenServerless.
+            Your assistant works alongside the environment where your application runs, bringing development and
+            deployment together.
+          </p>
+        </div>
+
+        <!-- Stack diagram, top to bottom. -->
+        <div class="diagram">
+          <div class="stack-layer">
+            <span class="layer-label">Assistant</span>
+            <p class="paragraph m">Trustant coding assistant, connected to your chosen Private AI.</p>
+          </div>
+          <div class="stack-layer">
+            <span class="layer-label">Application</span>
+            <p class="paragraph m">Your application: frontend, backend actions, and APIs.</p>
+          </div>
+          <div class="stack-layer">
+            <span class="layer-label">Platform</span>
+            <img src="images/apache-openserverless.png" width="24" height="24" loading="lazy" alt="" />
+            <p class="paragraph m">Apache OpenServerless: application runtime, data, and storage services.</p>
+          </div>
+          <div class="stack-layer">
+            <span class="layer-label">Infrastructure</span>
+            <p class="paragraph m">Your infrastructure: PC, server, cluster, or data center.</p>
+          </div>
+        </div>
+
+        <div class="grid columns-3 gap-l">
+          <div class="feature-card">
+            <div class="feature-heading">
+              <h3 class="color-accent no-top-margin">Build the full application</h3>
+              <p class="paragraph s secondary">
+                Bring the frontend, backend actions, APIs, and data connections into one development workflow.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-heading">
+              <h3 class="color-accent no-top-margin">Run on a private foundation</h3>
+              <p class="paragraph s secondary">
+                Use Apache OpenServerless as the foundation for application execution and platform services on
+                infrastructure you control.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-heading">
+              <h3 class="color-accent no-top-margin">Carry your work into deployment</h3>
+              <p class="paragraph s secondary">
+                Develop locally, then prepare and publish your application to your chosen compatible server or
+                cluster environment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Applications you can build -->
+      <section>
+        <div class="heading centered">
+          <h2 class="no-top-margin">Build tools for the work that stays private</h2>
+          <p class="paragraph m secondary balanced">
+            Turn your own workflows into applications, using your chosen Private AI and application infrastructure.
+          </p>
+        </div>
+        <div class="cards-with-icons-container">
+          <div class="card-with-icon horizontal">
+            <div class="fa-solid fa-table-columns icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <p class="paragraph m bold">Internal business tools</p>
+              <p class="paragraph m secondary">
+                Build customer management tools, project dashboards, and operational workflows for your team.
+              </p>
+            </div>
+          </div>
+          <div class="card-with-icon horizontal">
+            <div class="fa-regular fa-file-lines icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <p class="paragraph m bold">Document applications</p>
+              <p class="paragraph m secondary">
+                Create applications around internal documents and knowledge, with data access managed in your
+                environment.
+              </p>
+            </div>
+          </div>
+          <div class="card-with-icon horizontal">
+            <div class="fa-solid fa-gears icon xl color-accent" aria-hidden="true"></div>
+            <div class="feature-heading">
+              <p class="paragraph m bold">APIs and automation</p>
+              <p class="paragraph m secondary">
+                Connect systems, expose application services, and automate repetitive work on your private stack.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Pricing -->
+      <section id="pricing">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Start self-hosted. Grow to a private cluster.</h2>
+          <p class="paragraph m secondary balanced">Choose the Trustant setup that fits your infrastructure.</p>
+        </div>
+        <div class="grid columns-3 gap-l">
+
+          <div class="feature-card justified-vertically">
+            <div>
+              <div class="feature-heading">
+                <p class="paragraph l bold no-top-margin">Open Source</p>
+                <p class="paragraph s secondary">Install and manage your own open-source environment.</p>
+                <div class="price-line">
+                  <div class="paragraph l bold">Free</div>
+                </div>
+              </div>
+              <div class="feature-list">
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Trustant OpenSource</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Apache OpenServerless</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Self-hosted installation</div>
+                </div>
+              </div>
+            </div>
+            <div class="margin-top-l">
+              <!-- TODO before publication: replace with the confirmed installation documentation URL. -->
+              <span class="button tertiary full-width unavailable" aria-disabled="true"
+                role="link">View installation guide</span>
+              <small class="paragraph s tertiary pending-note">Link coming soon.</small>
+            </div>
+          </div>
+
+          <div class="feature-card justified-vertically highlighted">
+            <div>
+              <div class="feature-heading">
+                <p class="paragraph l bold no-top-margin">Desktop + Server</p>
+                <p class="paragraph s secondary">Build on your desktop and deploy to one private server.</p>
+                <div class="price-line">
+                  <div class="paragraph l bold">$1,000</div>
+                </div>
+              </div>
+              <div class="feature-list">
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Trustant Desktop</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Trustant Server</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>1 server</div>
+                </div>
+              </div>
+            </div>
+            <div class="margin-top-l">
+              <!-- TODO before publication: replace with the confirmed sales destination. -->
+              <span class="button primary full-width unavailable" aria-disabled="true"
+                role="link">Contact us about Server</span>
+              <small class="paragraph s tertiary pending-note">Link coming soon.</small>
+            </div>
+          </div>
+
+          <div class="feature-card justified-vertically">
+            <div>
+              <div class="feature-heading">
+                <p class="paragraph l bold no-top-margin">Desktop + Cluster</p>
+                <p class="paragraph s secondary">Run a resilient private deployment across three servers.</p>
+                <div class="price-line">
+                  <div class="paragraph l bold">$10,000</div>
+                </div>
+              </div>
+              <div class="feature-list">
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Trustant Desktop</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Trustant Cluster</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>3 servers</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>6 virtual machines</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Self-healing</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Backups included</div>
+                </div>
+              </div>
+            </div>
+            <div class="margin-top-l">
+              <!-- TODO before publication: replace with the confirmed sales destination. -->
+              <span class="button tertiary full-width unavailable" aria-disabled="true"
+                role="link">Contact us about Cluster</span>
+              <small class="paragraph s tertiary pending-note">Link coming soon.</small>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 8. Frequently asked questions -->
+      <section id="faq">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Frequently asked questions</h2>
+        </div>
+        <div class="accordion-container">
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">What is Trustant?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                Trustant is a coding assistant for Private AI, built on a full-stack, private, cloud-native
+                environment based on Apache OpenServerless. It brings application development and the environment
+                where your application runs into one workflow.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">Does Private AI have to run on my PC?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                No. You can use AI on your PC, an AI workstation such as NVIDIA DGX Spark, a private server, or
+                sovereign infrastructure in a data center you control.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">Do I need an AI workstation?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                An AI workstation is one option. Your setup depends on the model you choose and the resources it
+                needs; you can also use local AI or a private AI server.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">What does Apache OpenServerless provide?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                Apache OpenServerless provides the foundation for the private application environment underneath
+                Trustant, including application execution and platform services. Trustant adds the coding assistant
+                experience to that foundation.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">Can I build locally and deploy elsewhere?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                Yes. Build and test on your PC, then deploy to a compatible server, cluster, or data center
+                environment. Choose the deployment destination and configure its services and access for your
+                application.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">Is there a free option?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                Yes. Install Trustant OpenSource and Apache OpenServerless yourself for a free, self-hosted software
+                setup. You provide and operate the infrastructure.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">What is included in the cluster package?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                The $10,000 package includes Trustant Desktop and Trustant Cluster for three servers and six virtual
+                machines, with self-healing and backups included.
+              </p>
+            </div>
+          </details>
+
+          <details class="accordion-item" name="faq">
+            <summary class="accordion-toggle">
+              <p class="paragraph m bold">Will my data stay private?</p>
+              <span class="accordion-chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </summary>
+            <div class="accordion-content">
+              <p>
+                Trustant is designed for AI and applications running on infrastructure you control. Keeping data
+                within that environment also depends on your chosen models, connected services, access settings, and
+                deployment configuration.
+              </p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- 9. Final call to action -->
+      <section class="promo-cta">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Build with Private AI. Publish on your terms.</h2>
+          <p class="paragraph m secondary balanced">
+            Start on your PC and choose the infrastructure that fits your application, from a private server to your
+            own sovereign data center.
+          </p>
+          <div class="button-group margin-paragraph centered">
+            <a href="#pricing" class="button primary">Explore pricing</a>
+            <button type="button" class="button tertiary" data-video-open>Watch a video</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- The video plays in a modal rather than in the page. <dialog> brings
+           its own focus trap, Escape handling and inert backdrop, so the only
+           scripting needed is open/close and pausing on dismiss. -->
+      <dialog class="video-dialog" id="video-dialog" aria-label="Trustant introduction video">
+        <button type="button" class="video-dialog-close" data-video-close aria-label="Close video">
+          <span class="fa-solid fa-xmark icon m" aria-hidden="true"></span>
+        </button>
+        <video class="video-dialog-player" data-video-player controls playsinline preload="none" width="1920"
+          height="1080" poster="images/trusty-ant.png" src="https://videos.nuvolaris.download/simple-intro.mp4">
+          <p class="paragraph s">
+            Your browser does not support embedded video.
+            <a href="https://videos.nuvolaris.download/simple-intro.mp4">Open the video directly</a>.
+          </p>
+        </video>
+      </dialog>
+    </main>
+
+    <!-- 10. Footer -->
+    <footer class="footer">
+      <div class="footer-menu">
+        <div class="footer-brand">
+          <img src="images/logo-trustant.png" width="91" height="24" loading="lazy" alt="Trustant" />
+          <p class="paragraph s secondary">
+            A coding assistant for Private AI, built on Apache OpenServerless.
+          </p>
+        </div>
+        <div>
+          <div class="link-list">
+            <a href="#private-ai" class="paragraph s">Private AI</a>
+            <a href="#how-it-works" class="paragraph s">How it works</a>
+            <a href="#platform" class="paragraph s">Platform</a>
+            <a href="#pricing" class="paragraph s">Pricing</a>
+            <a href="#faq" class="paragraph s">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <p class="paragraph s tertiary">
+            Apache OpenServerless is a trademark of the Apache Software Foundation; its logo is shown as a
+            technology attribution.<br />
+            Page built with <a href="https://launchkit.evilmartians.io" target="_blank" rel="noopener">LaunchKit</a>
+            by <a href="https://evilmartians.com" target="_blank" rel="noopener">Evil Martians</a>.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
 </body>
 
 </html>

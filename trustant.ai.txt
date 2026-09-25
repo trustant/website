@@ -1,0 +1,68 @@
+; Zone file for trustant.ai
+; Web:  GitHub Pages (org/user: trustant)
+; Mail: Fastmail
+;
+; DNS is hosted at GoDaddy. GoDaddy's UI has no zone-file import, so use this
+; file as the reference and enter the records by hand under Manage DNS.
+; MX/SPF/DKIM values below are the ones Fastmail issued for this domain.
+
+$ORIGIN trustant.ai.
+$TTL 3600
+
+@   IN  SOA ns19.domaincontrol.com. hostmaster.trustant.ai. (
+            2026092301  ; serial (YYYYMMDDnn — bump on every edit)
+            7200        ; refresh
+            3600        ; retry
+            1209600     ; expire
+            3600 )      ; minimum
+
+; --- Nameservers (GoDaddy) ---
+@   IN  NS  ns19.domaincontrol.com.
+@   IN  NS  ns20.domaincontrol.com.
+
+; ---------------------------------------------------------------
+; Website — GitHub Pages
+; ---------------------------------------------------------------
+; Apex domain -> GitHub Pages IPv4
+@   IN  A   185.199.108.153
+@   IN  A   185.199.109.153
+@   IN  A   185.199.110.153
+@   IN  A   185.199.111.153
+
+; Apex domain -> GitHub Pages IPv6
+@   IN  AAAA    2606:50c0:8000::153
+@   IN  AAAA    2606:50c0:8001::153
+@   IN  AAAA    2606:50c0:8002::153
+@   IN  AAAA    2606:50c0:8003::153
+
+; www -> GitHub Pages
+www IN  CNAME   trustant.github.io.
+
+; ---------------------------------------------------------------
+; Mail — Fastmail
+; ---------------------------------------------------------------
+@   IN  MX  10 eu1-smtp.messagingengine.com.
+@   IN  MX  20 eu2-smtp.messagingengine.com.
+
+; SPF — authorises Fastmail to send for this domain
+@   IN  TXT "v=spf1 include:spf.messagingengine.com ~all"
+
+; DKIM — Fastmail manages the keys behind these delegated CNAMEs
+fm1._domainkey  IN  CNAME   fm1.trustant.ai.dkim.fmhosted.com.
+fm2._domainkey  IN  CNAME   fm2.trustant.ai.dkim.fmhosted.com.
+fm3._domainkey  IN  CNAME   fm3.trustant.ai.dkim.fmhosted.com.
+
+; DMARC — start in monitoring mode, tighten to p=quarantine/reject later
+_dmarc  IN  TXT "v=DMARC1; p=none; rua=mailto:postmaster@trustant.ai"
+
+; Autodiscover / autoconfig for mail clients
+_submission._tcp    IN  SRV 0 1 587 smtp.fastmail.com.
+_imap._tcp          IN  SRV 0 0 0 .
+_imaps._tcp         IN  SRV 0 1 993 imap.fastmail.com.
+_pop3._tcp          IN  SRV 0 0 0 .
+_pop3s._tcp         IN  SRV 10 1 995 pop.fastmail.com.
+_jmap._tcp          IN  SRV 0 1 443 api.fastmail.com.
+
+; CalDAV / CardDAV (only if you use Fastmail calendars and contacts)
+_caldavs._tcp       IN  SRV 0 1 443 caldav.fastmail.com.
+_carddavs._tcp      IN  SRV 0 1 443 carddav.fastmail.com.
