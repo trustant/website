@@ -691,6 +691,15 @@
   margin-top: 40px;
 }
 
+/* Inactive panels are hidden with a class rather than the `hidden` attribute.
+   Either way the panel is out of the layout, but toggling a class lets the
+   browser re-evaluate the lazy images the moment the panel is shown; with
+   `hidden` set in markup the deferred fetch never restarted and the panel
+   stayed blank. */
+.template-group.is-hidden {
+  display: none;
+}
+
 /* With tabs running, the strip names the group, so its heading would repeat
    it — and the panels no longer stack, so they need no separating margin. */
 .template-tabs.is-active ~ .template-group {

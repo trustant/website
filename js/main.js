@@ -183,7 +183,12 @@ function handleTemplateTabs() {
       tab.setAttribute("aria-selected", String(on));
       // Only the selected tab is in the tab order; the arrows move between.
       tab.tabIndex = on ? 0 : -1;
-      panels[i].hidden = !on;
+      // Hidden via a class, not the `hidden` attribute: a lazily-loaded image
+      // inside a `hidden` element is never considered near the viewport, so
+      // the browser defers the fetch forever and the panel stays blank when
+      // its tab is finally chosen.
+      panels[i].classList.toggle("is-hidden", !on);
+      panels[i].setAttribute("aria-hidden", String(!on));
     });
     if (focus) tabs[index].focus();
   };
