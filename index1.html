@@ -87,7 +87,7 @@
       <a href="#top" class="nav-brand"><img src="images/logo-trustant.png" width="106" height="28"
           alt="Trustant" /></a>
       <nav id="site-nav" class="nav-menu" data-navigation aria-label="Sections">
-        <a href="#private-ai" class="nav-link">Private AI</a>
+        <a href="#templates" class="nav-link">Templates</a>
         <a href="#how-it-works" class="nav-link">How it works</a>
         <a href="#platform" class="nav-link">Platform</a>
         <a href="#pricing" class="nav-link">Pricing</a>
@@ -172,57 +172,168 @@
         </div>
       </section>
 
-      <!-- 3. Private AI, wherever you run it -->
-      <section id="private-ai">
+      <!-- 3. Templates -->
+      <section id="templates">
         <div class="heading centered">
-          <h2 class="no-top-margin">Private AI, on infrastructure you control</h2>
+          <h2 class="no-top-margin">Start from a working application</h2>
           <p class="paragraph m secondary balanced">
-            Choose where your coding assistant's AI runs. Start on your own PC or connect to dedicated
-            infrastructure for your team.
+            No need to start from scratch. Pick a ready-to-use application and customise it to your needs with
+            the AI, on your own infrastructure.
           </p>
         </div>
-        <div class="grid columns-4 gap-l">
-          <div class="feature-card">
-            <div class="fa-solid fa-laptop-code icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">On your PC</h3>
-              <p class="paragraph s secondary">
-                Use local AI on your own computer to build applications in a personal development environment.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="fa-solid fa-microchip icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">On an AI workstation</h3>
-              <p class="paragraph s secondary">
-                Connect to a dedicated AI workstation, such as NVIDIA DGX Spark, while building from your PC.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="fa-solid fa-server icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">On a private server</h3>
-              <p class="paragraph s secondary">
-                Use AI hosted on a server your organization controls, with access managed for your team.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="fa-solid fa-building-shield icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">In a sovereign data center</h3>
-              <p class="paragraph s secondary">
-                Connect to AI in a data center you control, with infrastructure and operations governed by your own
-                requirements.
-              </p>
-            </div>
-          </div>
+        <!-- Progressive tabs: the groups below are a plain stacked list
+             until the script turns them into tabpanels, so the whole
+             catalogue stays readable without JavaScript. -->
+        <div class="template-tabs" role="tablist" aria-label="Template groups">
+          <button class="template-tab" type="button" role="tab" id="tab-chat"
+            aria-controls="panel-chat" aria-selected="true">Chat</button>
+          <button class="template-tab" type="button" role="tab" id="tab-demo"
+            aria-controls="panel-demo" aria-selected="false">Demo</button>
+          <button class="template-tab" type="button" role="tab" id="tab-examples"
+            aria-controls="panel-examples" aria-selected="false">Examples</button>
+          <button class="template-tab" type="button" role="tab" id="tab-utilities"
+            aria-controls="panel-utilities" aria-selected="false">Utilities</button>
         </div>
+        <div class="template-group" id="panel-chat" role="tabpanel" aria-labelledby="tab-chat">
+          <h3 class="template-group-title">Chat</h3>
+          <ul class="template-grid">
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/truingest" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/truingest.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Document Ingest</span>
+                <span class="template-note">Document ingestion, ready to run on your own infrastructure.</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="template-group" id="panel-demo" role="tabpanel" aria-labelledby="tab-demo">
+          <h3 class="template-group-title">Demo</h3>
+          <ul class="template-grid">
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/truk8s" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/truk8s.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Kubernetes Manager</span>
+                <span class="template-note">Manage Kubernetes from a browser interface.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/securitycheck" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/securitycheck.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Security Check</span>
+                <span class="template-note">Check an application for common security problems.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/tetris" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/tetris.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Tetris</span>
+                <span class="template-note">A game, to show a full application need not be large.</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="template-group" id="panel-examples" role="tabpanel" aria-labelledby="tab-examples">
+          <h3 class="template-group-title">Examples</h3>
+          <ul class="template-grid">
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/minicrm" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/minicrm.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Mini CRM</span>
+                <span class="template-note">Customers on one side, scheduled activities on the other.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/projectdashboard" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/projectdashboard.png" width="1670" height="1734" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Project Dashboard</span>
+                <span class="template-note">Track projects and what is due next.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/appsuite" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/appsuite.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">App Suite</span>
+                <span class="template-note">A small suite of everyday productivity tools.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/newsaggregator" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/newsaggregator.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">News Aggregator</span>
+                <span class="template-note">Collect and read feeds in one place.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/apistatusmonitor" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/apistatusmonitor.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">API Status Monitor</span>
+                <span class="template-note">Watch the APIs you depend on.</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="template-group" id="panel-utilities" role="tabpanel" aria-labelledby="tab-utilities">
+          <h3 class="template-group-title">Utilities</h3>
+          <ul class="template-grid">
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/postgresqlconsole" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/postgresqlconsole.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">PostgreSQL Console</span>
+                <span class="template-note">Query a PostgreSQL database from the browser.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/redisconsole" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/redisconsole.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">REDIS Console</span>
+                <span class="template-note">Inspect and edit Redis keys.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/jsonformatter" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/jsonformatter.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">JSON Formatter</span>
+                <span class="template-note">Format and inspect JSON documents.</span>
+              </a>
+            </li>
+            <li class="template-card">
+              <a href="https://github.com/trustable-ai/urlmetadata" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/urlmetadata.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">URL Metadata</span>
+                <span class="template-note">Read the metadata behind a URL.</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <p class="paragraph m secondary text-centered">
-          Keep prompts, code, and data within your chosen private environment by using private models and services
-          throughout your workflow.
+          Every application runs on your own stack, on hardware you control.
         </p>
       </section>
 
@@ -686,7 +797,7 @@
         </div>
         <div>
           <div class="link-list">
-            <a href="#private-ai" class="paragraph s">Private AI</a>
+            <a href="#templates" class="paragraph s">Templates</a>
             <a href="#how-it-works" class="paragraph s">How it works</a>
             <a href="#platform" class="paragraph s">Platform</a>
             <a href="#pricing" class="paragraph s">Pricing</a>

@@ -166,8 +166,52 @@ function handleVideoDialog() {
   dialog.addEventListener("close", () => player.pause());
 }
 
+// Progressive tabs for the template groups: the markup is a plain stacked list
+// of every group, and only once this runs does a group become a hidden
+// tabpanel. Without JavaScript the whole catalogue stays readable.
+function handleTemplateTabs() {
+  const tabs = [...document.querySelectorAll(".template-tab")];
+  const panels = [...document.querySelectorAll(".template-group")];
+
+  if (!tabs.length || tabs.length !== panels.length) return;
+
+  document.querySelector(".template-tabs")?.classList.add("is-active");
+
+  const select = (index, focus) => {
+    tabs.forEach((tab, i) => {
+      const on = i === index;
+      tab.setAttribute("aria-selected", String(on));
+      // Only the selected tab is in the tab order; the arrows move between.
+      tab.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+    });
+    if (focus) tabs[index].focus();
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => select(i, false));
+
+    tab.addEventListener("keydown", (event) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity }[event.key];
+      if (step === undefined) return;
+      event.preventDefault();
+
+      const next =
+        step === -Infinity
+          ? 0
+          : step === Infinity
+            ? tabs.length - 1
+            : (i + step + tabs.length) % tabs.length;
+      select(next, true);
+    });
+  });
+
+  select(0, false);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   handleMobileNav();
   handleMotto();
   handleVideoDialog();
+  handleTemplateTabs();
 });
