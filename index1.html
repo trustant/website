@@ -24,8 +24,8 @@
   <meta name="twitter:image" content="images/logo-trustant.png" />
 
   <!-- Favicon and icons -->
-  <link rel="icon" href="images/favicon/favicon.ico" sizes="32x32" />
   <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="images/favicon/favicon.ico" sizes="32x32" />
   <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
 
   <!-- Preload fonts (hosted locally; no remote font services) -->
@@ -143,6 +143,8 @@
         </div>
 
         <div class="tech-foundation">
+          <img class="opensource-logo" src="images/opensource.png" width="512" height="256" loading="lazy"
+            alt="Open Source" />
           <p class="paragraph m secondary tech-foundation-lead">
             <a href="https://openserverless.apache.org" target="_blank" rel="noopener">Built with Apache
               OpenServerless</a> — <a href="https://nuvolaris.io" target="_blank" rel="noopener">Powered by
@@ -437,8 +439,7 @@
           </div>
           <div class="stack-layer">
             <span class="layer-label">Platform</span>
-            <img src="images/apache-openserverless.png" width="24" height="24" loading="lazy" alt="" />
-            <p class="paragraph m">Apache OpenServerless: application runtime, data, and storage services.</p>
+            <p class="paragraph m">Nuvolaris: application runtime, data, and storage services.</p>
           </div>
           <div class="stack-layer">
             <span class="layer-label">Infrastructure</span>
@@ -476,59 +477,25 @@
         </div>
       </section>
 
-      <!-- 6. Applications you can build -->
-      <section>
-        <div class="heading centered">
-          <h2 class="no-top-margin">Build tools for the work that stays private</h2>
-          <p class="paragraph m secondary balanced">
-            Turn your own workflows into applications, using your chosen Private AI and application infrastructure.
-          </p>
-        </div>
-        <div class="cards-with-icons-container">
-          <div class="card-with-icon horizontal">
-            <div class="fa-solid fa-table-columns icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <p class="paragraph m bold">Internal business tools</p>
-              <p class="paragraph m secondary">
-                Build customer management tools, project dashboards, and operational workflows for your team.
-              </p>
-            </div>
-          </div>
-          <div class="card-with-icon horizontal">
-            <div class="fa-regular fa-file-lines icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <p class="paragraph m bold">Document applications</p>
-              <p class="paragraph m secondary">
-                Create applications around internal documents and knowledge, with data access managed in your
-                environment.
-              </p>
-            </div>
-          </div>
-          <div class="card-with-icon horizontal">
-            <div class="fa-solid fa-gears icon xl color-accent" aria-hidden="true"></div>
-            <div class="feature-heading">
-              <p class="paragraph m bold">APIs and automation</p>
-              <p class="paragraph m secondary">
-                Connect systems, expose application services, and automate repetitive work on your private stack.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- 7. Pricing -->
       <section id="pricing">
         <div class="heading centered">
-          <h2 class="no-top-margin">Start self-hosted. Grow to a private cluster.</h2>
-          <p class="paragraph m secondary balanced">Choose the Trustant setup that fits your infrastructure.</p>
+          <h2 class="no-top-margin">Start Personal. Grow to a Private Cluster.</h2>
+          <p class="paragraph m secondary balanced">
+            <a href="https://github.com/trustant/trustant" target="_blank" rel="noopener">Trustant</a> by
+            <a href="https://nuvolaris.io" target="_blank" rel="noopener">Nuvolaris</a> and
+            <a href="https://apache.org" target="_blank" rel="noopener">Apache</a>
+            <a href="https://openserverless.apache.org" target="_blank" rel="noopener">OpenServerless</a> are OSI
+            compliant Open Source software, so you can build from source and hack it freely as long as you comply
+            with the licenses. But if you are looking for a supported version, we provide the solutions for you.
+          </p>
         </div>
         <div class="grid columns-3 gap-l">
 
           <div class="feature-card justified-vertically">
             <div>
               <div class="feature-heading">
-                <p class="paragraph l bold no-top-margin">Open Source</p>
-                <p class="paragraph s secondary">Install and manage your own open-source environment.</p>
+                <p class="paragraph l bold no-top-margin">Trustant Personal</p>
                 <div class="price-line">
                   <div class="paragraph l bold">Free</div>
                 </div>
@@ -536,99 +503,110 @@
               <div class="feature-list">
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Trustant OpenSource</div>
+                  <div>Easy to use installer for Windows and Mac</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Apache OpenServerless</div>
+                  <div>Full Trustant with all the features</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Self-hosted installation</div>
+                  <div>Local install of Apache OpenServerless</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>For personal use only (no publishing)</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Community Support</div>
                 </div>
               </div>
             </div>
             <div class="margin-top-l">
-              <!-- TODO before publication: replace with the confirmed installation documentation URL. -->
-              <span class="button tertiary full-width unavailable" aria-disabled="true"
-                role="link">View installation guide</span>
-              <small class="paragraph s tertiary pending-note">Link coming soon.</small>
+              <button type="button" class="button tertiary full-width" data-open-dialog="download-dialog">
+                Download
+              </button>
             </div>
           </div>
 
           <div class="feature-card justified-vertically highlighted">
             <div>
               <div class="feature-heading">
-                <p class="paragraph l bold no-top-margin">Desktop + Server</p>
-                <p class="paragraph s secondary">Build on your desktop and deploy to one private server.</p>
+                <p class="paragraph l bold no-top-margin">Trustant Developer</p>
                 <div class="price-line">
-                  <div class="paragraph l bold">$1,000</div>
+                  <div class="paragraph l bold">$100</div>
+                  <div class="paragraph s secondary">/month</div>
                 </div>
               </div>
               <div class="feature-list">
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Trustant Desktop</div>
+                  <div>Easy to use installer for Windows and Mac</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Trustant Server</div>
+                  <div>Installer for one server to publish applications</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>1 server</div>
+                  <div>License for publishing on one named server</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>For development only: single server with no backup or HA</div>
+                </div>
+                <div class="feature-item paragraph s">
+                  <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
+                  <div>Email support</div>
                 </div>
               </div>
             </div>
             <div class="margin-top-l">
-              <!-- TODO before publication: replace with the confirmed sales destination. -->
-              <span class="button primary full-width unavailable" aria-disabled="true"
-                role="link">Contact us about Server</span>
-              <small class="paragraph s tertiary pending-note">Link coming soon.</small>
+              <button type="button" class="button primary full-width" data-open-dialog="buy-dialog">Buy</button>
             </div>
           </div>
 
           <div class="feature-card justified-vertically">
             <div>
               <div class="feature-heading">
-                <p class="paragraph l bold no-top-margin">Desktop + Cluster</p>
-                <p class="paragraph s secondary">Run a resilient private deployment across three servers.</p>
+                <p class="paragraph l bold no-top-margin">Trustant Enterprise</p>
                 <div class="price-line">
-                  <div class="paragraph l bold">$10,000</div>
+                  <div class="paragraph l bold">$1,000</div>
+                  <div class="paragraph s secondary">/month</div>
                 </div>
               </div>
               <div class="feature-list">
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Trustant Desktop</div>
+                  <div>Easy to use installer for Windows and Mac</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Trustant Cluster</div>
+                  <div>Installation to one cluster of choice, minimum 3 servers / 6 VM</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>3 servers</div>
+                  <div>Publishing to one named cluster and 2 development servers</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>6 virtual machines</div>
+                  <div>HA support: the cluster keeps working with one server / 2 VM down</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Self-healing</div>
+                  <div>Monitoring and Backup</div>
                 </div>
                 <div class="feature-item paragraph s">
                   <div class="fa-regular fa-square-check icon m" aria-hidden="true"></div>
-                  <div>Backups included</div>
+                  <div>Email + Chat support</div>
                 </div>
               </div>
             </div>
             <div class="margin-top-l">
-              <!-- TODO before publication: replace with the confirmed sales destination. -->
-              <span class="button tertiary full-width unavailable" aria-disabled="true"
-                role="link">Contact us about Cluster</span>
-              <small class="paragraph s tertiary pending-note">Link coming soon.</small>
+              <button type="button" class="button tertiary full-width" data-open-dialog="contact-dialog">
+                Contact Sales
+              </button>
             </div>
           </div>
 
@@ -784,6 +762,76 @@
           </p>
         </video>
       </dialog>
+
+      <!-- Download: the installer chooser is hosted elsewhere, so it is framed
+           rather than reimplemented here. -->
+      <dialog class="panel-dialog is-wide" id="download-dialog" aria-label="Download Trustant Personal">
+        <button type="button" class="panel-dialog-close" data-close-dialog aria-label="Close">
+          <span class="fa-solid fa-xmark icon m" aria-hidden="true"></span>
+        </button>
+        <iframe class="panel-dialog-frame" data-src="https://landing.nuvolaris.org/api/my/v1/download"
+          title="Download Trustant Personal" loading="lazy"></iframe>
+      </dialog>
+
+      <!-- Buy: collects details, then stops. Payment is not wired up yet, and
+           the button says so rather than pretending to charge anyone. -->
+      <dialog class="panel-dialog" id="buy-dialog" aria-labelledby="buy-dialog-title">
+        <button type="button" class="panel-dialog-close" data-close-dialog aria-label="Close">
+          <span class="fa-solid fa-xmark icon m" aria-hidden="true"></span>
+        </button>
+        <div class="panel-dialog-body">
+          <h2 class="panel-dialog-title" id="buy-dialog-title">Trustant Developer</h2>
+          <p class="paragraph s secondary">$100/month. Tell us where to send your licence.</p>
+          <form data-buy-form>
+            <label class="panel-field">
+              <span class="panel-label">Name</span>
+              <input class="panel-input" type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="panel-field">
+              <span class="panel-label">Work email</span>
+              <input class="panel-input" type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="panel-field">
+              <span class="panel-label">Company</span>
+              <input class="panel-input" type="text" name="company" autocomplete="organization" />
+            </label>
+            <button type="submit" class="button primary full-width margin-top-l">Continue to payment</button>
+          </form>
+        </div>
+      </dialog>
+
+      <!-- Contact Sales: the same shape, for the Enterprise package. -->
+      <dialog class="panel-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+        <button type="button" class="panel-dialog-close" data-close-dialog aria-label="Close">
+          <span class="fa-solid fa-xmark icon m" aria-hidden="true"></span>
+        </button>
+        <div class="panel-dialog-body">
+          <h2 class="panel-dialog-title" id="contact-dialog-title">Contact Sales</h2>
+          <p class="paragraph s secondary">
+            Trustant Enterprise, $1,000/month. Tell us about your deployment and we will get back to you.
+          </p>
+          <form data-contact-form>
+            <label class="panel-field">
+              <span class="panel-label">Name</span>
+              <input class="panel-input" type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="panel-field">
+              <span class="panel-label">Work email</span>
+              <input class="panel-input" type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="panel-field">
+              <span class="panel-label">Company</span>
+              <input class="panel-input" type="text" name="company" autocomplete="organization" />
+            </label>
+            <label class="panel-field">
+              <span class="panel-label">What are you planning to deploy?</span>
+              <textarea class="panel-input" name="message" rows="3"></textarea>
+            </label>
+            <button type="submit" class="button primary full-width margin-top-l">Send</button>
+          </form>
+        </div>
+      </dialog>
+
     </main>
 
     <!-- 10. Footer -->

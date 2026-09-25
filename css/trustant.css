@@ -20,6 +20,8 @@
   --color-background: #100c0a;
   --color-background-blur: #100c0aeb;
   --color-surface: #1c1512;
+  /* One step lighter, for hovered panels and buttons. */
+  --color-surface-hover: #241b17;
 
   --color-text-primary: #f0e9e4;
   --color-text-secondary: #c2b3a8;
@@ -370,17 +372,17 @@
 
 /* ---------- Typewriter motto ---------- */
 
-/* The typewriter sits one level below the H1, at the template's own h2 scale.
-   Kept as tokens so the size and the height reserved for it cannot drift
-   apart.
+/* The typewriter sits below the H1 at three quarters of the template's h2
+   scale. Kept as tokens so the size and the height reserved for it cannot
+   drift apart.
 
    Declared on .motto rather than :root: this file loads after mobile.css, so
    a :root declaration would resolve the tokens against the desktop scale and
    defeat that file's own smaller overrides. Scoped here, each viewport picks
-   up the h2 size it is meant to have. */
+   up the size it is meant to have. */
 .motto {
-  --motto-font-size: var(--font-size-xl);
-  --motto-line-height: var(--line-height-h2);
+  --motto-font-size: calc(var(--font-size-xl) * 0.75);
+  --motto-line-height: calc(var(--line-height-h2) * 0.75);
 }
 
 /* A fixed minimum height so the buttons below never shift as lines type
@@ -390,10 +392,10 @@
   /* Held at h2 size, tracking the template's own type scale.
 
      The min-height reserves the tallest phrase so the buttons below never
-     shift as lines type, wrap and clear: three lines here and on tablet,
-     four on mobile. Each count was measured against the real phrases at the
-     real size rather than estimated. */
-  min-height: calc(3 * var(--motto-line-height));
+     shift as lines type, wrap and clear: two lines here and on tablet, three
+     on mobile. Each count was measured against the real phrases at the real
+     size rather than estimated. */
+  min-height: calc(2 * var(--motto-line-height));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -454,7 +456,7 @@
 
 @media (max-width: 767px) {
   .motto {
-    min-height: calc(4 * var(--motto-line-height));
+    min-height: calc(3 * var(--motto-line-height));
   }
 }
 
@@ -550,7 +552,7 @@
   padding: 0;
   border: 1px solid var(--color-border-level-2);
   border-radius: 16px;
-  background: var(--color-surface-level-1);
+  background: var(--color-surface);
   overflow: visible;
 }
 
@@ -582,13 +584,13 @@
   padding: 0;
   border: 1px solid var(--color-border-level-2);
   border-radius: 50%;
-  background: var(--color-surface-level-1);
+  background: var(--color-surface);
   color: var(--color-text-primary);
   cursor: pointer;
 }
 
 .video-dialog-close:hover {
-  background: var(--color-surface-level-2, var(--color-surface-level-1));
+  background: var(--color-surface-hover);
 }
 
 .video-dialog-close:focus-visible {
@@ -744,7 +746,7 @@
   padding: 16px;
   border: 1px solid var(--color-border-level-2);
   border-radius: var(--radius-l);
-  background: var(--color-surface-level-1);
+  background: var(--color-surface);
   text-decoration: none;
   color: inherit;
   transition: border-color 0.2s ease, background-color 0.2s ease;
@@ -752,7 +754,7 @@
 
 .template-card a:hover {
   border-color: var(--color-accent);
-  background: var(--color-surface-level-2, var(--color-surface-level-1));
+  background: var(--color-surface-hover);
 }
 
 .template-card a:focus-visible {
@@ -793,4 +795,132 @@
   font-size: var(--font-size-s);
   line-height: var(--line-height-body-s, 1.5);
   color: var(--color-text-secondary);
+}
+
+/* ---------- Open Source mark ---------- */
+
+/* The OSI logo is black artwork on white, so on this ground it needs its own
+   light plate rather than an invert: inverting would turn the green keyhole
+   magenta. */
+.opensource-logo {
+  display: block;
+  width: min(100%, 180px);
+  height: auto;
+  margin-bottom: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-m, 8px);
+  background: #fff;
+}
+
+/* ---------- Pricing panels ---------- */
+
+.panel-dialog {
+  width: min(92vw, 480px);
+  padding: 0;
+  border: 1px solid var(--color-border-level-2);
+  border-radius: 16px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  overflow: visible;
+}
+
+/* The download chooser is a framed page, so it needs room to breathe. */
+.panel-dialog.is-wide {
+  width: min(92vw, 860px);
+}
+
+.panel-dialog[open] {
+  margin: auto;
+}
+
+.panel-dialog::backdrop {
+  background: rgb(0 0 0 / 70%);
+}
+
+.panel-dialog-body {
+  padding: 32px;
+}
+
+.panel-dialog-title {
+  margin: 0 0 8px;
+  font-size: var(--font-size-l);
+  line-height: 1.2;
+}
+
+.panel-dialog-frame {
+  display: block;
+  width: 100%;
+  height: min(70vh, 560px);
+  border: 0;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.panel-dialog-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border-level-2);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.panel-dialog-close:hover {
+  background: var(--color-surface-hover);
+}
+
+.panel-dialog-close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.panel-field {
+  display: block;
+  margin-top: 16px;
+}
+
+.panel-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--font-size-s);
+  color: var(--color-text-secondary);
+}
+
+.panel-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-level-2);
+  border-radius: 8px;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  /* 16px keeps iOS from zooming the field on focus. */
+  font-size: 16px;
+  resize: vertical;
+}
+
+.panel-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* On a phone the corner button would sit off-screen, so bring it inside. */
+@media (max-width: 767px) {
+  .panel-dialog-close {
+    top: 8px;
+    right: 8px;
+  }
+
+  .panel-dialog-body {
+    padding: 24px;
+  }
 }

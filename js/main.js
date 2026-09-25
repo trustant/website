@@ -214,9 +214,57 @@ function handleTemplateTabs() {
   select(0, false);
 }
 
+// The pricing buttons each open a panel: the download chooser, the buy form
+// and the sales enquiry. <dialog> brings the focus trap, Escape and the inert
+// backdrop, so this only wires up opening, closing and the form submits.
+function handlePanelDialogs() {
+  const open = (dialog) => {
+    if (!dialog || typeof dialog.showModal !== "function") return;
+
+    // The framed page is only fetched when it is actually wanted, so the
+    // external request is not made on every page load.
+    const frame = dialog.querySelector("iframe[data-src]");
+    if (frame && !frame.src) frame.src = frame.dataset.src;
+
+    dialog.showModal();
+  };
+
+  document.querySelectorAll("[data-open-dialog]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      open(document.getElementById(trigger.dataset.openDialog));
+    });
+  });
+
+  document.querySelectorAll(".panel-dialog").forEach((dialog) => {
+    dialog.querySelectorAll("[data-close-dialog]").forEach((button) => {
+      button.addEventListener("click", () => dialog.close());
+    });
+
+    // A click on the backdrop lands on the dialog itself, never its contents.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+
+  // Payment is not connected yet. Say so plainly rather than collecting
+  // details that go nowhere.
+  document.querySelector("[data-buy-form]")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    window.alert("stripe integration to be implemented");
+    document.getElementById("buy-dialog").close();
+  });
+
+  document.querySelector("[data-contact-form]")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    window.alert("Thank you. Sales contact handling is not connected yet.");
+    document.getElementById("contact-dialog").close();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   handleMobileNav();
   handleMotto();
   handleVideoDialog();
   handleTemplateTabs();
+  handlePanelDialogs();
 });
