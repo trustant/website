@@ -643,8 +643,70 @@
 
 /* ---------- Templates ---------- */
 
+/* The tab strip is hidden until the script confirms it works, so a no-JS page
+   shows the plain stacked groups rather than dead buttons. */
+.template-tabs {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.template-tabs.is-active {
+  display: flex;
+}
+
+.template-tab {
+  appearance: none;
+  padding: 8px 18px;
+  border: 1px solid var(--color-border-level-2);
+  border-radius: var(--radius-s);
+  background: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-s);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.template-tab:hover {
+  color: var(--color-text-primary);
+}
+
+.template-tab[aria-selected="true"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #17100c;
+}
+
+.template-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .template-group + .template-group {
   margin-top: 40px;
+}
+
+/* With tabs running, the strip names the group, so its heading would repeat
+   it — and the panels no longer stack, so they need no separating margin. */
+.template-tabs.is-active ~ .template-group {
+  margin-top: 0;
+}
+
+.template-tabs.is-active ~ .template-group .template-group-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .template-group-title {
