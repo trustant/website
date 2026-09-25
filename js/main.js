@@ -125,93 +125,68 @@ function handleMotto() {
   play();
 }
 
-// The introduction video opens in a modal. <dialog> handles the focus trap,
-// Escape and the inert backdrop itself, so this only opens it, closes it on a
-// backdrop click, and stops playback on the way out.
-function handleVideoDialog() {
-  const dialog = document.querySelector("[data-video-player]")?.closest("dialog");
-  const player = dialog?.querySelector("[data-video-player]");
+// Every template sits in one horizontal rail. The strip above it is a
+// convenience: clicking an entry scrolls the rail to that group's first card,
+// and the entry for whichever group is currently in view is marked.
+function handleTemplateNav() {
+  const rail = document.getElementById("template-rail");
+  const links = [...document.querySelectorAll(".template-tab")];
+  const anchors = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
 
-  if (!dialog || !player || typeof dialog.showModal !== "function") return;
+  if (!rail || links.length !== anchors.length || !anchors.length) return;
 
-  const open = () => {
-    dialog.showModal();
-    player.play().catch(() => {
-      // Autoplay can be refused; the visitor still has the controls.
+  const mark = (index) => {
+    links.forEach((link, i) => {
+      link.classList.toggle("is-current", i === index);
+      if (i === index) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
     });
   };
 
-  const close = () => {
-    player.pause();
-    dialog.close();
-  };
-
-  document.querySelectorAll("[data-video-open]").forEach((trigger) => {
-    trigger.addEventListener("click", (event) => {
+  // Scroll the rail itself rather than letting the browser jump the page to
+  // an element inside a horizontally scrolling container.
+  links.forEach((link, i) => {
+    link.addEventListener("click", (event) => {
       event.preventDefault();
-      open();
+      rail.scrollTo({
+        left: anchors[i].offsetLeft - rail.offsetLeft,
+        behavior: "smooth",
+      });
+      mark(i);
     });
   });
 
-  dialog.querySelectorAll("[data-video-close]").forEach((trigger) => {
-    trigger.addEventListener("click", close);
-  });
-
-  // A click on the backdrop lands on the dialog itself, never on its contents.
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) close();
-  });
-
-  // Escape fires `cancel` rather than the close button, so stop playback there.
-  dialog.addEventListener("close", () => player.pause());
-}
-
-// Progressive tabs for the template groups: the markup is a plain stacked list
-// of every group, and only once this runs does a group become a hidden
-// tabpanel. Without JavaScript the whole catalogue stays readable.
-function handleTemplateTabs() {
-  const tabs = [...document.querySelectorAll(".template-tab")];
-  const panels = [...document.querySelectorAll(".template-group")];
-
-  if (!tabs.length || tabs.length !== panels.length) return;
-
-  document.querySelector(".template-tabs")?.classList.add("is-active");
-
-  const select = (index, focus) => {
-    tabs.forEach((tab, i) => {
-      const on = i === index;
-      tab.setAttribute("aria-selected", String(on));
-      // Only the selected tab is in the tab order; the arrows move between.
-      tab.tabIndex = on ? 0 : -1;
-      // Hidden via a class, not the `hidden` attribute: a lazily-loaded image
-      // inside a `hidden` element is never considered near the viewport, so
-      // the browser defers the fetch forever and the panel stays blank when
-      // its tab is finally chosen.
-      panels[i].classList.toggle("is-hidden", !on);
-      panels[i].setAttribute("aria-hidden", String(!on));
+  // Track which group the rail is showing as it is scrolled by hand. The
+  // leading edge is measured a little into the view so a group counts as
+  // current once its first card is properly on screen, not as it grazes it.
+  const current = () => {
+    const edge = rail.scrollLeft + 24;
+    let index = 0;
+    anchors.forEach((anchor, i) => {
+      if (anchor.offsetLeft - rail.offsetLeft <= edge) index = i;
     });
-    if (focus) tabs[index].focus();
+
+    // At the far end the rail cannot scroll any further, so the last group
+    // would never become current on its own.
+    if (rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 8) {
+      index = anchors.length - 1;
+    }
+    return index;
   };
 
-  tabs.forEach((tab, i) => {
-    tab.addEventListener("click", () => select(i, false));
-
-    tab.addEventListener("keydown", (event) => {
-      const step = { ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity }[event.key];
-      if (step === undefined) return;
-      event.preventDefault();
-
-      const next =
-        step === -Infinity
-          ? 0
-          : step === Infinity
-            ? tabs.length - 1
-            : (i + step + tabs.length) % tabs.length;
-      select(next, true);
+  let pending = false;
+  rail.addEventListener("scroll", () => {
+    if (pending) return;
+    pending = true;
+    window.requestAnimationFrame(() => {
+      pending = false;
+      mark(current());
     });
   });
 
-  select(0, false);
+  mark(0);
 }
 
 // The pricing buttons each open a panel: the download chooser, the buy form
@@ -264,7 +239,6 @@ function handlePanelDialogs() {
 document.addEventListener("DOMContentLoaded", () => {
   handleMobileNav();
   handleMotto();
-  handleVideoDialog();
-  handleTemplateTabs();
+  handleTemplateNav();
   handlePanelDialogs();
 });

@@ -96,16 +96,8 @@
           rel="noopener">
           <span class="fa-brands fa-github icon s" aria-hidden="true"></span> GitHub
         </a>
-        <div class="button-group stacked margin-top-l mobile-only">
-          <button type="button" class="button primary" data-video-open>
-            <span class="fa-solid fa-play icon s" aria-hidden="true"></span> Watch a video
-          </button>
-        </div>
       </nav>
       <div class="button-group">
-        <button type="button" class="button primary compact hide-on-mobile nav-watch" data-video-open>
-          <span class="fa-solid fa-play icon s" aria-hidden="true"></span> Watch a video
-        </button>
         <button class="button ghost compact nav-hamburger" data-mobile-toggle aria-label="Show menu"
           aria-expanded="false" aria-controls="site-nav">
           <span class="fa-solid fa-bars icon m" aria-hidden="true"></span>
@@ -131,364 +123,22 @@
             </ul>
           </div>
           <figure class="hero-anim">
-            <video class="hero-anim-video" src="video/truustant-anim.mp4" width="300" height="130" autoplay loop muted
-              playsinline preload="auto"
-              aria-label="Trustant building an application from a written description."></video>
+            <video class="hero-anim-video" width="1672" height="941" controls playsinline preload="none"
+              poster="images/splash.png" src="https://videos.nuvolaris.download/simple-intro.mp4">
+              <p class="paragraph s">
+                Your browser does not support embedded video.
+                <a href="https://videos.nuvolaris.download/simple-intro.mp4">Open the video directly</a>.
+              </p>
+            </video>
           </figure>
-
-          <div class="button-group margin-paragraph centered">
-            <a href="#pricing" class="button primary">Explore pricing</a>
-            <button type="button" class="button tertiary" data-video-open>Watch a video</button>
-          </div>
-        </div>
-
-        <div class="tech-foundation">
-          <img class="opensource-logo" src="images/opensource.png" width="512" height="256" loading="lazy"
-            alt="Open Source" />
-          <p class="paragraph m secondary tech-foundation-lead">
-            <a href="https://openserverless.apache.org" target="_blank" rel="noopener">Built with Apache
-              OpenServerless</a> — <a href="https://nuvolaris.io" target="_blank" rel="noopener">Powered by
-              Nuvolaris</a>
-          </p>
-          <!-- The logos repeat the two links above, so they are decorative here:
-               announcing them again would read the same names twice over. -->
-          <div class="tech-foundation-logos" aria-hidden="true">
-            <a href="https://openserverless.apache.org" target="_blank" rel="noopener" class="tech-foundation-logo"
-              tabindex="-1">
-              <img src="images/apache-openserverless.png" width="2172" height="724" alt="" />
-            </a>
-            <a href="https://nuvolaris.io" target="_blank" rel="noopener" class="tech-foundation-logo"
-              tabindex="-1">
-              <img src="images/logo-nuvolaris.svg" width="2000" height="312" alt="" />
-            </a>
-          </div>
-          <p class="paragraph m secondary tech-foundation-text">
-            Frontend, APIs, database and storage, hosting, compute, functions, security, rate limiting, caching,
-            load balancing, logging and recovery — Kubernetes, S3-compatible storage, PostgreSQL, Redis,
-            Prometheus and Velero, integrated and running on infrastructure you control. A load-balanced
-            controller dispatches work through Kafka to invokers that run your actions in the runtime each one
-            needs.
-          </p>
-          <img class="stack-image" src="images/nuvolaris-stack.png" width="421" height="258" loading="lazy"
-            alt="The platform stack: layered services alongside S3-compatible storage, PostgreSQL, Kubernetes, Redis, Prometheus and Velero, with a load-balanced controller, Kafka and multi-runtime invoker architecture." />
-        </div>
-      </section>
-
-      <!-- 3. Templates -->
-      <section id="templates">
-        <div class="heading centered">
-          <h2 class="no-top-margin">Start from a working application</h2>
-          <p class="paragraph m secondary balanced">
-            No need to start from scratch. Pick a ready-to-use application and customise it to your needs with
-            the AI, on your own infrastructure.
-          </p>
-        </div>
-        <!-- Progressive tabs: the groups below are a plain stacked list
-             until the script turns them into tabpanels, so the whole
-             catalogue stays readable without JavaScript. -->
-        <div class="template-tabs" role="tablist" aria-label="Template groups">
-          <button class="template-tab" type="button" role="tab" id="tab-chat"
-            aria-controls="panel-chat" aria-selected="true">Chat</button>
-          <button class="template-tab" type="button" role="tab" id="tab-demo"
-            aria-controls="panel-demo" aria-selected="false">Demo</button>
-          <button class="template-tab" type="button" role="tab" id="tab-examples"
-            aria-controls="panel-examples" aria-selected="false">Examples</button>
-          <button class="template-tab" type="button" role="tab" id="tab-utilities"
-            aria-controls="panel-utilities" aria-selected="false">Utilities</button>
-        </div>
-        <div class="template-group" id="panel-chat" role="tabpanel" aria-labelledby="tab-chat">
-          <h3 class="template-group-title">Chat</h3>
-          <ul class="template-grid">
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/truingest" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/truingest.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">Document Ingest</span>
-                <span class="template-note">Document ingestion, ready to run on your own infrastructure.</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="template-group" id="panel-demo" role="tabpanel" aria-labelledby="tab-demo">
-          <h3 class="template-group-title">Demo</h3>
-          <ul class="template-grid">
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/truk8s" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/truk8s.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">Kubernetes Manager</span>
-                <span class="template-note">Manage Kubernetes from a browser interface.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/securitycheck" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/securitycheck.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">Security Check</span>
-                <span class="template-note">Check an application for common security problems.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/tetris" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/tetris.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">Tetris</span>
-                <span class="template-note">A game, to show a full application need not be large.</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="template-group" id="panel-examples" role="tabpanel" aria-labelledby="tab-examples">
-          <h3 class="template-group-title">Examples</h3>
-          <ul class="template-grid">
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/minicrm" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/minicrm.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">Mini CRM</span>
-                <span class="template-note">Customers on one side, scheduled activities on the other.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/projectdashboard" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/projectdashboard.png" width="1670" height="1734" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">Project Dashboard</span>
-                <span class="template-note">Track projects and what is due next.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/appsuite" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/appsuite.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">App Suite</span>
-                <span class="template-note">A small suite of everyday productivity tools.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/newsaggregator" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/newsaggregator.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">News Aggregator</span>
-                <span class="template-note">Collect and read feeds in one place.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/apistatusmonitor" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/apistatusmonitor.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">API Status Monitor</span>
-                <span class="template-note">Watch the APIs you depend on.</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="template-group" id="panel-utilities" role="tabpanel" aria-labelledby="tab-utilities">
-          <h3 class="template-group-title">Utilities</h3>
-          <ul class="template-grid">
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/postgresqlconsole" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/postgresqlconsole.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">PostgreSQL Console</span>
-                <span class="template-note">Query a PostgreSQL database from the browser.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/redisconsole" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/redisconsole.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">REDIS Console</span>
-                <span class="template-note">Inspect and edit Redis keys.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/jsonformatter" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/jsonformatter.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">JSON Formatter</span>
-                <span class="template-note">Format and inspect JSON documents.</span>
-              </a>
-            </li>
-            <li class="template-card">
-              <a href="https://github.com/trustable-ai/urlmetadata" target="_blank" rel="noopener">
-                <span class="template-shot">
-                  <img src="images/templates/urlmetadata.png" width="600" height="800" loading="lazy" alt="" />
-                </span>
-                <span class="template-name">URL Metadata</span>
-                <span class="template-note">Read the metadata behind a URL.</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <p class="paragraph m secondary text-centered">
-          Every application runs on your own stack, on hardware you control.
-        </p>
-      </section>
-
-      <!-- 4. Build on your PC. Publish anywhere. -->
-      <section id="how-it-works">
-        <div class="heading centered">
-          <h2 class="no-top-margin">Build on your PC. Publish anywhere.</h2>
-          <p class="paragraph m secondary balanced">
-            Move from an idea to a running application with a coding assistant and an integrated application
-            environment.
-          </p>
-        </div>
-        <div class="grid columns-3 gap-l">
-          <div class="feature-card">
-            <div class="step-number" aria-hidden="true">1</div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">Choose your Private AI</h3>
-              <p class="paragraph s secondary">
-                Connect Trustant to AI running on your PC, an AI workstation, a private server, or your sovereign
-                infrastructure.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="step-number" aria-hidden="true">2</div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">Build and run your application</h3>
-              <p class="paragraph s secondary">
-                Describe what you need. Use Trustant to create and refine your frontend, backend, and data
-                connections, then run and test the application on your PC.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="step-number" aria-hidden="true">3</div>
-            <div class="feature-heading">
-              <h3 class="no-top-margin">Publish where you need it</h3>
-              <p class="paragraph s secondary">
-                Deploy your application to a compatible environment on your own server, a private cluster, or
-                infrastructure in a data center you control.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Flow graphic: where the application is published. -->
-        <div class="diagram margin-top-l">
-          <div class="flow-group">
-          <div class="flow-row">
-            <div class="flow-node accent">
-              <img class="flow-image" src="images/mac+spark.png" width="644" height="279" loading="lazy"
-                alt="A laptop running Trustant beside an AI workstation." />
-              <p class="paragraph m bold no-top-margin">PC with Trustant</p>
-              <p class="paragraph s tertiary">Build and test here</p>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">
-              <span class="fa-solid fa-arrow-right icon m"></span>
-            </div>
-            <div class="flow-node">
-              <img class="flow-image" src="images/local-ai.png" width="782" height="974" loading="lazy"
-                alt="A compact AI appliance for a single desk." />
-              <p class="paragraph m bold no-top-margin">AI appliance</p>
-            </div>
-            <div class="flow-node">
-              <img class="flow-image" src="images/private-ai.png" width="502" height="334" loading="lazy"
-                alt="A rack-mounted GPU server." />
-              <p class="paragraph m bold no-top-margin">Private Server</p>
-            </div>
-            <div class="flow-node">
-              <img class="flow-image" src="images/sovereign-ai.png" width="378" height="450" loading="lazy"
-                alt="A data center building." />
-              <p class="paragraph m bold no-top-margin">Sovereign Data Center</p>
-            </div>
-          </div>
-          <p class="paragraph s tertiary text-centered">Publish: where your application runs</p>
-          </div>
         </div>
 
       </section>
 
-      <!-- 5. The platform behind the assistant -->
-      <section id="platform">
-        <div class="heading centered">
-          <h2 class="no-top-margin">A coding assistant with a complete application platform</h2>
-          <p class="paragraph m secondary balanced">
-            Trustant is built on a full-stack, private, cloud-native environment based on Apache OpenServerless.
-            Your assistant works alongside the environment where your application runs, bringing development and
-            deployment together.
-          </p>
-        </div>
-
-        <!-- Stack diagram, top to bottom. -->
-        <div class="diagram">
-          <div class="stack-layer">
-            <span class="layer-label">Assistant</span>
-            <p class="paragraph m">Trustant coding assistant, connected to your chosen Private AI.</p>
-          </div>
-          <div class="stack-layer">
-            <span class="layer-label">Application</span>
-            <p class="paragraph m">Your application: frontend, backend actions, and APIs.</p>
-          </div>
-          <div class="stack-layer">
-            <span class="layer-label">Platform</span>
-            <p class="paragraph m">Nuvolaris: application runtime, data, and storage services.</p>
-          </div>
-          <div class="stack-layer">
-            <span class="layer-label">Infrastructure</span>
-            <p class="paragraph m">Your infrastructure: PC, server, cluster, or data center.</p>
-          </div>
-        </div>
-
-        <div class="grid columns-3 gap-l">
-          <div class="feature-card">
-            <div class="feature-heading">
-              <h3 class="color-accent no-top-margin">Build the full application</h3>
-              <p class="paragraph s secondary">
-                Bring the frontend, backend actions, APIs, and data connections into one development workflow.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-heading">
-              <h3 class="color-accent no-top-margin">Run on a private foundation</h3>
-              <p class="paragraph s secondary">
-                Use Apache OpenServerless as the foundation for application execution and platform services on
-                infrastructure you control.
-              </p>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-heading">
-              <h3 class="color-accent no-top-margin">Carry your work into deployment</h3>
-              <p class="paragraph s secondary">
-                Develop locally, then prepare and publish your application to your chosen compatible server or
-                cluster environment.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. Pricing -->
+      <!-- 3. Pricing -->
       <section id="pricing">
         <div class="heading centered">
           <h2 class="no-top-margin">Start Personal. Grow to a Private Cluster.</h2>
-          <p class="paragraph m secondary balanced">
-            <a href="https://github.com/trustant/trustant" target="_blank" rel="noopener">Trustant</a> by
-            <a href="https://nuvolaris.io" target="_blank" rel="noopener">Nuvolaris</a> and
-            <a href="https://apache.org" target="_blank" rel="noopener">Apache</a>
-            <a href="https://openserverless.apache.org" target="_blank" rel="noopener">OpenServerless</a> are OSI
-            compliant Open Source software, so you can build from source and hack it freely as long as you comply
-            with the licenses. But if you are looking for a supported version, we provide the solutions for you.
-          </p>
         </div>
         <div class="grid columns-3 gap-l">
 
@@ -613,6 +263,314 @@
         </div>
       </section>
 
+
+      <!-- 4. Build on your PC. Publish anywhere. -->
+      <section id="how-it-works">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Build on your PC. Publish anywhere.</h2>
+          <p class="paragraph m secondary balanced">
+            Move from an idea to a running application with a coding assistant and an integrated application
+            environment.
+          </p>
+        </div>
+        <div class="grid columns-3 gap-l">
+          <div class="feature-card">
+            <div class="step-number" aria-hidden="true">1</div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">Choose your Private AI</h3>
+              <p class="paragraph s secondary">
+                Connect Trustant to AI running on your PC, an AI workstation, a private server, or your sovereign
+                infrastructure.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="step-number" aria-hidden="true">2</div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">Build and run your application</h3>
+              <p class="paragraph s secondary">
+                Describe what you need. Use Trustant to create and refine your frontend, backend, and data
+                connections, then run and test the application on your PC.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="step-number" aria-hidden="true">3</div>
+            <div class="feature-heading">
+              <h3 class="no-top-margin">Publish where you need it</h3>
+              <p class="paragraph s secondary">
+                Deploy your application to a compatible environment on your own server, a private cluster, or
+                infrastructure in a data center you control.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flow graphic: where the application is published. -->
+        <div class="diagram margin-top-l">
+          <div class="flow-group">
+          <div class="flow-row">
+            <div class="flow-node accent">
+              <img class="flow-image" src="images/mac+spark.png" width="644" height="279" loading="lazy"
+                alt="A laptop running Trustant beside an AI workstation." />
+              <p class="paragraph m bold no-top-margin">PC with Trustant</p>
+              <p class="paragraph s tertiary">Build and test here</p>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">
+              <span class="fa-solid fa-arrow-right icon m"></span>
+            </div>
+            <div class="flow-node">
+              <img class="flow-image" src="images/local-ai.png" width="782" height="974" loading="lazy"
+                alt="A compact AI appliance for a single desk." />
+              <p class="paragraph m bold no-top-margin">AI appliance</p>
+            </div>
+            <div class="flow-node">
+              <img class="flow-image" src="images/private-ai.png" width="502" height="334" loading="lazy"
+                alt="A rack-mounted GPU server." />
+              <p class="paragraph m bold no-top-margin">Private Server</p>
+            </div>
+            <div class="flow-node">
+              <img class="flow-image" src="images/sovereign-ai.png" width="378" height="450" loading="lazy"
+                alt="A data center building." />
+              <p class="paragraph m bold no-top-margin">Sovereign Data Center</p>
+            </div>
+          </div>
+          <p class="paragraph s tertiary text-centered">Publish: where your application runs</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 5. Powered by Nuvolaris -->
+      <section id="foundation">
+        <div class="tech-foundation">
+          <!-- 1. Powered by Nuvolaris, with the stack it provides. -->
+          <p class="paragraph m secondary tech-foundation-lead">
+            <a href="https://nuvolaris.io" target="_blank" rel="noopener">Powered by Nuvolaris</a>
+          </p>
+          <a href="https://nuvolaris.io" target="_blank" rel="noopener" class="tech-foundation-logo"
+            aria-hidden="true" tabindex="-1">
+            <img src="images/logo-nuvolaris.svg" width="2000" height="312" alt="" />
+          </a>
+
+          <p class="paragraph m secondary tech-foundation-text">
+            Frontend, APIs, database and storage, hosting, compute, functions, security, rate limiting, caching,
+            load balancing, logging and recovery — Kubernetes, S3-compatible storage, PostgreSQL, Redis,
+            Prometheus and Velero, integrated and running on infrastructure you control. A load-balanced
+            controller dispatches work through Kafka to invokers that run your actions in the runtime each one
+            needs.
+          </p>
+          <img class="stack-image" src="images/nuvolaris-stack.png" width="421" height="258" loading="lazy"
+            alt="The platform stack: layered services alongside S3-compatible storage, PostgreSQL, Kubernetes, Redis, Prometheus and Velero, with a load-balanced controller, Kafka and multi-runtime invoker architecture." />
+        </div>
+      </section>
+
+      <!-- 6. Templates -->
+      <section id="templates">
+        <div class="heading centered">
+          <h2 class="no-top-margin">Start from a working application</h2>
+          <p class="paragraph m secondary balanced">
+            No need to start from scratch. Pick a ready-to-use application and customise it to your needs with
+            the AI, on your own infrastructure.
+          </p>
+        </div>
+        <!-- Progressive tabs: the groups below are a plain stacked list
+             until the script turns them into tabpanels, so the whole
+             catalogue stays readable without JavaScript. -->
+        <div class="template-tabs" aria-label="Jump to a template group">
+          <a class="template-tab" href="#group-chat">Chat</a>
+          <a class="template-tab" href="#group-demo">Demo</a>
+          <a class="template-tab" href="#group-examples">Examples</a>
+          <a class="template-tab" href="#group-utilities">Utilities</a>
+        </div>
+        <!-- One horizontal rail: every template in document order. The
+             first card of each group carries that group's id, so the
+             strip above can scroll the rail to it. -->
+        <ul class="template-rail" id="template-rail">
+          <li class="template-card" id="group-chat" data-group="chat">
+              <a href="https://github.com/trustable-ai/truingest" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/truingest.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Document Ingest</span>
+                <span class="template-note">Document ingestion, ready to run on your own infrastructure.</span>
+              </a>
+          </li>
+          <li class="template-card" id="group-demo" data-group="demo">
+              <a href="https://github.com/trustable-ai/truk8s" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/truk8s.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Kubernetes Manager</span>
+                <span class="template-note">Manage Kubernetes from a browser interface.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/securitycheck" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/securitycheck.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Security Check</span>
+                <span class="template-note">Check an application for common security problems.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/tetris" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/tetris.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Tetris</span>
+                <span class="template-note">A game, to show a full application need not be large.</span>
+              </a>
+          </li>
+          <li class="template-card" id="group-examples" data-group="examples">
+              <a href="https://github.com/trustable-ai/minicrm" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/minicrm.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Mini CRM</span>
+                <span class="template-note">Customers on one side, scheduled activities on the other.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/projectdashboard" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/projectdashboard.png" width="1670" height="1734" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">Project Dashboard</span>
+                <span class="template-note">Track projects and what is due next.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/appsuite" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/appsuite.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">App Suite</span>
+                <span class="template-note">A small suite of everyday productivity tools.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/newsaggregator" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/newsaggregator.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">News Aggregator</span>
+                <span class="template-note">Collect and read feeds in one place.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/apistatusmonitor" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/apistatusmonitor.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">API Status Monitor</span>
+                <span class="template-note">Watch the APIs you depend on.</span>
+              </a>
+          </li>
+          <li class="template-card" id="group-utilities" data-group="utilities">
+              <a href="https://github.com/trustable-ai/postgresqlconsole" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/postgresqlconsole.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">PostgreSQL Console</span>
+                <span class="template-note">Query a PostgreSQL database from the browser.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/redisconsole" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/redisconsole.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">REDIS Console</span>
+                <span class="template-note">Inspect and edit Redis keys.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/jsonformatter" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/jsonformatter.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">JSON Formatter</span>
+                <span class="template-note">Format and inspect JSON documents.</span>
+              </a>
+          </li>
+          <li class="template-card">
+              <a href="https://github.com/trustable-ai/urlmetadata" target="_blank" rel="noopener">
+                <span class="template-shot">
+                  <img src="images/templates/urlmetadata.png" width="600" height="800" loading="lazy" alt="" />
+                </span>
+                <span class="template-name">URL Metadata</span>
+                <span class="template-note">Read the metadata behind a URL.</span>
+              </a>
+          </li>
+        </ul>
+        <p class="paragraph m secondary text-centered">
+          Every application runs on your own stack, on hardware you control.
+        </p>
+      </section>
+
+      <!-- 7. The platform behind the assistant -->
+      <section id="platform">
+        <div class="heading centered">
+          <h2 class="no-top-margin">A coding assistant with a complete application platform</h2>
+          <p class="paragraph m secondary balanced">
+            Trustant is built on a full-stack, private, cloud-native environment based on Apache OpenServerless.
+            Your assistant works alongside the environment where your application runs, bringing development and
+            deployment together.
+          </p>
+        </div>
+
+        <!-- Stack diagram, top to bottom. -->
+        <div class="diagram">
+          <div class="stack-layer">
+            <span class="layer-label">Assistant</span>
+            <p class="paragraph m">Trustant coding assistant, connected to your chosen Private AI.</p>
+          </div>
+          <div class="stack-layer">
+            <span class="layer-label">Application</span>
+            <p class="paragraph m">Your application: frontend, backend actions, and APIs.</p>
+          </div>
+          <div class="stack-layer">
+            <span class="layer-label">Platform</span>
+            <p class="paragraph m">Nuvolaris: application runtime, data, and storage services.</p>
+          </div>
+          <div class="stack-layer">
+            <span class="layer-label">Infrastructure</span>
+            <p class="paragraph m">Your infrastructure: PC, server, cluster, or data center.</p>
+          </div>
+        </div>
+
+        <div class="grid columns-3 gap-l">
+          <div class="feature-card">
+            <div class="feature-heading">
+              <h3 class="color-accent no-top-margin">Build the full application</h3>
+              <p class="paragraph s secondary">
+                Bring the frontend, backend actions, APIs, and data connections into one development workflow.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-heading">
+              <h3 class="color-accent no-top-margin">Run on a private foundation</h3>
+              <p class="paragraph s secondary">
+                Use Apache OpenServerless as the foundation for application execution and platform services on
+                infrastructure you control.
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-heading">
+              <h3 class="color-accent no-top-margin">Carry your work into deployment</h3>
+              <p class="paragraph s secondary">
+                Develop locally, then prepare and publish your application to your chosen compatible server or
+                cluster environment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 8. Frequently asked questions -->
       <section id="faq">
         <div class="heading centered">
@@ -731,37 +689,29 @@
         </div>
       </section>
 
-      <!-- 9. Final call to action -->
-      <section class="promo-cta">
-        <div class="heading centered">
-          <h2 class="no-top-margin">Build with Private AI. Publish on your terms.</h2>
-          <p class="paragraph m secondary balanced">
-            Start on your PC and choose the infrastructure that fits your application, from a private server to your
-            own sovereign data center.
-          </p>
-          <div class="button-group margin-paragraph centered">
-            <a href="#pricing" class="button primary">Explore pricing</a>
-            <button type="button" class="button tertiary" data-video-open>Watch a video</button>
+      <!-- 9. Open source and Apache credits -->
+      <section id="credits">
+        <div class="tech-foundation">
+
+          <!-- The two marks flank the credit they belong to, on one row. -->
+          <div class="foundation-row">
+            <a href="https://openserverless.apache.org" target="_blank" rel="noopener"
+              class="foundation-mark" aria-hidden="true" tabindex="-1">
+              <img src="images/apache-openserverless.png" width="1189" height="674" loading="lazy" alt="" />
+            </a>
+            <p class="paragraph m secondary foundation-credit">
+              <a href="https://github.com/trustant/trustant" target="_blank" rel="noopener">Trustant</a> by
+              <a href="https://nuvolaris.io" target="_blank" rel="noopener">Nuvolaris</a> and
+              <a href="https://apache.org" target="_blank" rel="noopener">Apache</a>
+              <a href="https://openserverless.apache.org" target="_blank" rel="noopener">OpenServerless</a> are
+              OSI compliant Open Source software, so you can build from source and hack it freely as long as you
+              comply with the licenses.
+            </p>
+            <img class="opensource-logo" src="images/opensource.png" width="512" height="256" loading="lazy"
+              alt="Open Source" />
           </div>
         </div>
       </section>
-
-
-      <!-- The video plays in a modal rather than in the page. <dialog> brings
-           its own focus trap, Escape handling and inert backdrop, so the only
-           scripting needed is open/close and pausing on dismiss. -->
-      <dialog class="video-dialog" id="video-dialog" aria-label="Trustant introduction video">
-        <button type="button" class="video-dialog-close" data-video-close aria-label="Close video">
-          <span class="fa-solid fa-xmark icon m" aria-hidden="true"></span>
-        </button>
-        <video class="video-dialog-player" data-video-player controls playsinline preload="none" width="1920"
-          height="1080" poster="images/trusty-ant.png" src="https://videos.nuvolaris.download/simple-intro.mp4">
-          <p class="paragraph s">
-            Your browser does not support embedded video.
-            <a href="https://videos.nuvolaris.download/simple-intro.mp4">Open the video directly</a>.
-          </p>
-        </video>
-      </dialog>
 
       <!-- Download: the installer chooser is hosted elsewhere, so it is framed
            rather than reimplemented here. -->
